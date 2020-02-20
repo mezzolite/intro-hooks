@@ -9,7 +9,7 @@ function App() {
     let id = setTimeout(() => {
       document.title = `Current count ${count}`
       setCount(count + 1)
-    }, 1000)
+    }, 1000) // this is where a fetch function would go
 
     return () => clearTimeout(id)
   }, [count])
