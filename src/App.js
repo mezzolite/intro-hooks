@@ -1,24 +1,25 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const [count, setCount] = useState(0) //destructuring from useState: count is state, setCount is setState
+  
+  useEffect(() => {
+    let id = setTimeout(() => {
+      document.title = `Current count ${count}`
+      setCount(count + 1)
+    }, 1000)
+
+    return () => clearTimeout(id)
+  }, [count])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1> Counter App </h1>
+      <h2>{count}</h2>
+      <button onClick={() => setCount(count + 1)}>+</button>
+      <button onClick={() => setCount(count - 1)}>-</button>
     </div>
   );
 }
